@@ -113,6 +113,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Orbs, function (sprite, otherSpr
     100,
     true
     )
+    Bats.setPosition(Dog.x + 80, Dog.y - 80)
+    Bats.follow(Dog, 50)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSprite) {
     info.changeScoreBy(1)
