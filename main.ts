@@ -158,13 +158,28 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Dog.vy = -155
     }
 })
-function Q5 () {
+function Q8 () {
     Dialog_Mode = true
-    game.showLongText("-2+(-6)=", DialogLayout.Bottom)
-    story.showPlayerChoices("-8", "4")
+    game.showLongText("24 divided by -6", DialogLayout.Bottom)
+    story.showPlayerChoices("-4", "4")
     if (story.checkLastAnswer("4")) {
         info.changeScoreBy(-2)
-    } else if (story.checkLastAnswer("-8")) {
+    } else if (story.checkLastAnswer("-4")) {
+        info.changeScoreBy(2)
+    } else {
+    	
+    }
+    Dialog_Mode = false
+    pause(1000)
+    Question_number += 1
+}
+function Q5 () {
+    Dialog_Mode = true
+    game.showLongText("-6 x -4=", DialogLayout.Bottom)
+    story.showPlayerChoices("-24", "24")
+    if (story.checkLastAnswer("-24")) {
+        info.changeScoreBy(-2)
+    } else if (story.checkLastAnswer("24")) {
         info.changeScoreBy(2)
     } else {
     	
@@ -202,17 +217,51 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.math, function (sprite, otherSpr
         Q4()
         otherSprite.setKind(SpriteKind.Complete)
     } else if (Question_number == 5) {
-    	
+        Q5()
+        otherSprite.setKind(SpriteKind.Complete)
     } else if (Question_number == 6) {
-    	
+        Q6()
+        otherSprite.setKind(SpriteKind.Complete)
     } else if (Question_number == 7) {
-    	
+        Q7()
+        otherSprite.setKind(SpriteKind.Complete)
     } else if (Question_number == 8) {
-    	
+        Q8()
+        otherSprite.setKind(SpriteKind.Complete)
     } else {
     	
     }
 })
+function Q7 () {
+    Dialog_Mode = true
+    game.showLongText("6 divided by -3", DialogLayout.Bottom)
+    story.showPlayerChoices("2", "-2")
+    if (story.checkLastAnswer("2")) {
+        info.changeScoreBy(-2)
+    } else if (story.checkLastAnswer("-2")) {
+        info.changeScoreBy(2)
+    } else {
+    	
+    }
+    Dialog_Mode = false
+    pause(1000)
+    Question_number += 1
+}
+function Q6 () {
+    Dialog_Mode = true
+    game.showLongText("7x (-8)=", DialogLayout.Bottom)
+    story.showPlayerChoices("56", "-56")
+    if (story.checkLastAnswer("56")) {
+        info.changeScoreBy(-2)
+    } else if (story.checkLastAnswer("-56")) {
+        info.changeScoreBy(2)
+    } else {
+    	
+    }
+    Dialog_Mode = false
+    pause(1000)
+    Question_number += 1
+}
 function Q3 () {
     Dialog_Mode = true
     game.showLongText("17+(-22)=", DialogLayout.Bottom)
@@ -788,6 +837,9 @@ game.onUpdate(function () {
     } else {
     	
     }
+})
+game.onUpdateInterval(1000, function () {
+    Dog.sayText(Question_number)
 })
 forever(function () {
     if (Dialog_Mode == false) {
