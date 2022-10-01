@@ -158,6 +158,36 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         Dog.vy = -155
     }
 })
+function Q5 () {
+    Dialog_Mode = true
+    game.showLongText("-2+(-6)=", DialogLayout.Bottom)
+    story.showPlayerChoices("-8", "4")
+    if (story.checkLastAnswer("4")) {
+        info.changeScoreBy(-2)
+    } else if (story.checkLastAnswer("-8")) {
+        info.changeScoreBy(2)
+    } else {
+    	
+    }
+    Dialog_Mode = false
+    pause(1000)
+    Question_number += 1
+}
+function Q4 () {
+    Dialog_Mode = true
+    game.showLongText("-2+(-6)=", DialogLayout.Bottom)
+    story.showPlayerChoices("-8", "4")
+    if (story.checkLastAnswer("4")) {
+        info.changeScoreBy(-2)
+    } else if (story.checkLastAnswer("-8")) {
+        info.changeScoreBy(2)
+    } else {
+    	
+    }
+    Dialog_Mode = false
+    pause(1000)
+    Question_number += 1
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.math, function (sprite, otherSprite) {
     if (Question_number == 1) {
         Q1()
@@ -166,13 +196,38 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.math, function (sprite, otherSpr
         Q2()
         otherSprite.setKind(SpriteKind.Complete)
     } else if (Question_number == 3) {
-    	
+        Q3()
+        otherSprite.setKind(SpriteKind.Complete)
     } else if (Question_number == 4) {
+        Q4()
+        otherSprite.setKind(SpriteKind.Complete)
+    } else if (Question_number == 5) {
+    	
+    } else if (Question_number == 6) {
+    	
+    } else if (Question_number == 7) {
+    	
+    } else if (Question_number == 8) {
     	
     } else {
     	
     }
 })
+function Q3 () {
+    Dialog_Mode = true
+    game.showLongText("17+(-22)=", DialogLayout.Bottom)
+    story.showPlayerChoices("-5", "35")
+    if (story.checkLastAnswer("35")) {
+        info.changeScoreBy(-2)
+    } else if (story.checkLastAnswer("-5")) {
+        info.changeScoreBy(2)
+    } else {
+    	
+    }
+    Dialog_Mode = false
+    pause(1000)
+    Question_number += 1
+}
 let Bats: Sprite = null
 let Question_number = 0
 let Dialog_Mode = false
