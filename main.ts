@@ -122,13 +122,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Coin, function (sprite, otherSpr
     info.changeScoreBy(1)
     otherSprite.destroy()
 })
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    scene.cameraShake(2, 100)
-    if (Dog.vy == 0) {
-        Dog.vy = -155
+function Q2 () {
+    Dialog_Mode = true
+    game.showLongText("7- -24=", DialogLayout.Bottom)
+    story.showPlayerChoices("31", "-17")
+    if (story.checkLastAnswer("-17")) {
+        info.changeScoreBy(-2)
+    } else if (story.checkLastAnswer("31")) {
+        info.changeScoreBy(2)
+    } else {
+    	
     }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.math, function (sprite, otherSprite) {
+    Dialog_Mode = false
+    pause(1000)
+    Question_number += 1
+}
+function Q1 () {
     Dialog_Mode = true
     game.showLongText("-6- -7=", DialogLayout.Bottom)
     story.showPlayerChoices("1", "-13")
@@ -136,14 +145,36 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.math, function (sprite, otherSpr
         info.changeScoreBy(-2)
     } else if (story.checkLastAnswer("1")) {
         info.changeScoreBy(2)
-        _Math.setKind(SpriteKind.Complete)
     } else {
     	
     }
     Dialog_Mode = false
     pause(1000)
+    Question_number += 1
+}
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    scene.cameraShake(2, 100)
+    if (Dog.vy == 0) {
+        Dog.vy = -155
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.math, function (sprite, otherSprite) {
+    if (Question_number == 1) {
+        Q1()
+        otherSprite.setKind(SpriteKind.Complete)
+    } else if (Question_number == 2) {
+        Q2()
+        otherSprite.setKind(SpriteKind.Complete)
+    } else if (Question_number == 3) {
+    	
+    } else if (Question_number == 4) {
+    	
+    } else {
+    	
+    }
 })
 let Bats: Sprite = null
+let Question_number = 0
 let Dialog_Mode = false
 let _Math: Sprite = null
 let Red_Orb: Sprite = null
@@ -619,6 +650,7 @@ for (let value of tiles.getTilesByType(assets.tile`myTile4`)) {
     }
 }
 Dialog_Mode = false
+Question_number = 1
 game.onUpdate(function () {
     Dog.setImage(img`
         . . . . f f f f f . . . 
